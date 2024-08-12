@@ -1,5 +1,5 @@
 {
-  "name": "museum-paintings",
+  "name": "movie-reviews",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -19,6 +19,7 @@
     "express-handlebars": "^5.2.0",
     "express-session": "^1.17.1",
     "handlebars": "^4.7.6",
+    "nodemailer": "^6.9.14",
     "pg": "^8.11.3",
     "sequelize": "^6.33.0"
   },
