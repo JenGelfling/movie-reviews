@@ -1,21 +1,34 @@
 const router = require('express').Router();
-const { NeedClass1, NeedClass2 } = require('../models');
+const { Movies, Reviews, Users } = require('../models');
 
-router.get('/', async (req, res) => {
+//to display a set group of current movies, I could create an array of objects here in to make it be consistent 
+
+router.get('/movie/:num', async (req,res) => {
+    const idx = parseInt(req.params.num) -1;
+    console.log(idx);
+    const moviesToRender= movies[idx]
+    console.log(moviesToRender);
+    res.render('dish', dishToRender)
+  })
+
+  router.get('/', async (req, res) => {
     try {
-      const dbMovieData = await Movie.findAll({
+      const dbGalleryData = await Gallery.findAll({
         include: [
           {
-            model: Movie,
-            attributes: ['title', 'poster'], //might need to add the year as well
+            model: Painting,
+            attributes: ['filename', 'description'],
           },
         ],
       });
   
-      const movies = dbMovieData.map((movie) =>
-        movie.get({ plain: true })
+      const galleries = dbGalleryData.map((gallery) =>
+        gallery.get({ plain: true })
       );
-      res.render('homepage', {movies});
+      res.render('homepage', {
+        galleries,
+        loggedIn: req.session.loggedIn,
+      });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
