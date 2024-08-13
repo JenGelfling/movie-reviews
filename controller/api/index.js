@@ -1,9 +1,14 @@
+// Import just the router express
 const router = require('express').Router();
-const user = require('./user.routes');
-const login = require('./login.routes');
 
-router.use('/login', login);
-router.use('/user', user);
+
+const userRoutes = require('./userRoutes');
+const profileRoutes= require('./profile-routes')
+
+// When a request is made to the /users or /projects path, it will be directed to the index.js in the /users or /projects folder.
+router.use('/users', userRoutes);
+router.use('/profile', profileRoutes);
+
 
 module.exports = router;
 
