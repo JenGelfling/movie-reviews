@@ -2,7 +2,7 @@
 const router = require('express').Router();
 
 
-const userRoutes = require('./userRoutes');
+const userRoutes = require('./user-routes');
 const profileRoutes= require('./profile-routes')
 const searchResultsRoutes= require('./profile-routes')
 

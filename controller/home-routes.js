@@ -13,19 +13,12 @@ const { Movie, Reviews, User } = require('../models');
 
 router.get('/', async (req, res) => {
     try {
-      const dbMovieData = await Movie.findAll({
-        include: [
-          {
-            model: Movie,
-            attributes: ['title', 'poster'], //update later
-          },
-        ],
-      });
-  
+      const dbMovieData = await Movie.findAll({});
       const movies = dbMovieData.map((movie) =>
         movie.get({ plain: true })
       );
-      res.render('homepage', {movies,});
+      console.log(movies)
+      res.render('homepage', {movies});
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
