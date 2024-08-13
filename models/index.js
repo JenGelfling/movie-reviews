@@ -1,5 +1,3 @@
-const Sequelize = require('sequelize');
-const sequelize = require('../config/connection');
 
 const User = require('./User');
 const Reviews = require('./Reviews');
@@ -27,4 +25,4 @@ User.hasMany(Reviews, {
   onDelete: 'CASCADE'
 });
 
-module.exports = { User, Reviews, Movie, sequelize };
+module.exports = { User, Reviews, Movie };
