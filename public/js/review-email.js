@@ -1,8 +1,3 @@
-//THIS MIGHT ALL NEED TO GO INTO THE SERVER JS FILE
-
-
-
-
 // Import the Nodemailer library
 const nodemailer = require('nodemailer');
 
@@ -21,8 +16,8 @@ const transporter = nodemailer.createTransport({
 const mailOptions = {
   from: process.env.GMAIL_USER,
   to: 'reviewergeneric90@gmail.com',
-  subject: 'Signup successful!',
-  text: 'Thanks for signiing up for Reel Insights, the best place to post your worst movie opinions!'
+  subject: 'Your review has been submitted successfully',
+  text: 'Your review has been posted!'
 };
 
 // Send the email

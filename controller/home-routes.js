@@ -48,7 +48,7 @@ router.get('/', async (req, res) => {
         include: [
           {
             model: Reviews,
-            attributes: ['title', 'description'], //update later
+            attributes: ['title', 'description'], //likely should add a description or similar field into the Reviews model
           },
         ],
       });
