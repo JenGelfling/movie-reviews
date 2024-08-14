@@ -7,12 +7,12 @@ router.get('/review', async (req, res) => {
     try {
       // Get all projects and JOIN with user data
       const reviewData = await Reviews.findAll({
-        include: [
-          {
-            model: Reviews,
-            attributes: ['name'],
-          },
-        ],
+        // include: [
+        //   {
+        //     model: Reviews,
+        //     attributes: ['name'],
+        //   },
+        // ],
       });
   
       // Serialize data so the template can read it
@@ -31,12 +31,12 @@ router.get('/review', async (req, res) => {
   router.get('/review/:id', async (req, res) => {
     try {
       const reviewData = await Reviews.findByPk(req.params.id, {
-        include: [
-          {
-            model: Reviews,
-            attributes: ['name'],
-          },
-        ],
+        // include: [
+        //   {
+        //     model: Reviews,
+        //     attributes: ['name'],
+        //   },
+        // ],
       });
   
       const review = reviewData.get({ plain: true });
