@@ -5,24 +5,6 @@ const { Likes, Reviews, Users } = require('../models');
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//to display a set group of current movies, I could create an array of objects here in to make it be consistent. Also probably not functional yet
-
-
-
-
 router.get('/', async (req, res) => {
     try {
       const dbReviewData = await Reviews.findAll({});
@@ -61,33 +43,35 @@ router.get('/', async (req, res) => {
     }
   });
 
+  router.get('/', async (req, res) => {
+    try {
+      const dbLikesData = await Likes.findAll({});
+      const likes = dbLikesData.map((like) =>
+        like.get({ plain: true })
+      );
+      console.log(likes)
+      res.render('homepage', {reviews});
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
 
+  router.get('/profile', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/profile');
+      return;
+    }
+    res.render('profile');
+  });
 
-
- 
-
-
-
-
-  //to display a set group of current movies, I could create an array of objects here in to make it be consistent. Also probably not functional yet
-//   router.get('/movie/:num', async (req,res) => {
-//     const idx = parseInt(req.params.num) -1;
-//     console.log(idx);
-//     const movieToRender= Movie[idx]
-//     console.log(movieToRender);
-//     res.render('movie', movieToRender)
-//   });
-
-
-
-
-// router.get('/login', (req, res) => {
-//     if (req.session.loggedIn) {
-//       res.redirect('/');
-//       return;
-//     }
-//     res.render('login');
-//   });
+  router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+      res.redirect('/');
+      return;
+    }
+    res.render('login');
+  });
 
 
 
