@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const { Like, Reviews, User } = require('../models');
 
 
@@ -7,7 +8,9 @@ const { Like, Reviews, User } = require('../models');
 
 
 
+
 //to display a set group of current movies, I could create an array of objects here in to make it be consistent. Also probably not functional yet 
+
 
 router.get('/', async (req, res) => {
     try {
@@ -22,6 +25,32 @@ router.get('/', async (req, res) => {
       res.status(500).json(err);
     }
   });
+
+
+
+
+// router.get('/', async (req, res) => {
+//     try {
+//       const dbMovieData = await Movie.findAll({});
+//       const movies = dbMovieData.map((movie) =>
+//         movie.get({ plain: true })
+//       );
+//       console.log(movies)
+//       res.render('homepage', {movies});
+//     } catch (err) {
+//       console.log(err);
+//       res.status(500).json(err);
+//     }
+//   });
+
+  //to display a set group of current movies, I could create an array of objects here in to make it be consistent. Also probably not functional yet 
+  // router.get('/movie/:num', async (req,res) => {
+  //   const idx = parseInt(req.params.num) -1;
+  //   console.log(idx);
+  //   const movieToRender= Movie[idx]
+  //   console.log(movieToRender);
+  //   res.render('movie', movieToRender)
+  // });
 
 
 
@@ -42,9 +71,23 @@ router.get('/', async (req, res) => {
 
   router.get('/', async (req, res) => {
     try {
+
       const dbLikesData = await Movie.findAll({});
       const likes = dbLikesData.map((like) =>
         like.get({ plain: true })
+
+      const dbReviewData = await Reviews.findAll({
+        // include: [
+        //   {
+        //     model: Reviews,
+        //     attributes: ['title', 'description'], //likely should add a description or similar field into the Reviews model
+        //   },
+        // ],
+      });
+  
+      const reviews = dbReviewData.map((review) =>
+        review.get({ plain: true })
+
       );
       console.log(likes)
       res.render('homepage', {likes});

@@ -3,6 +3,7 @@ const { Reviews } = require('../../models');
 
 
 //the profile page will have the review history of the user
+
 // router.get('/review', async (req, res) => {
 //     try {
 //       // Get all projects and JOIN with user data
@@ -14,6 +15,7 @@ const { Reviews } = require('../../models');
 //           },
 //         ],
 //       });
+
   
 //       // Serialize data so the template can read it
 //       const reviews = reviewData.map((review) => review.get({ plain: true }));
@@ -31,12 +33,12 @@ const { Reviews } = require('../../models');
   router.get('/review/:id', async (req, res) => {
     try {
       const reviewData = await Reviews.findByPk(req.params.id, {
-        include: [
-          {
-            model: Reviews,
-            attributes: ['name'],
-          },
-        ],
+        // include: [
+        //   {
+        //     model: Reviews,
+        //     attributes: ['name'],
+        //   },
+        // ],
       });
   
       const review = reviewData.get({ plain: true });
