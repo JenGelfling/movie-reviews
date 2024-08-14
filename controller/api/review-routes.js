@@ -1,3 +1,5 @@
+const { Reviews } = require('../../models');
+const router = require('express').Router();
 
 
 router.get('/review', async (req, res) => {
@@ -49,7 +51,18 @@ router.get('/review', async (req, res) => {
   }); 
 
 
-  router.delete('/:id', async (req, res) => {
+
+  router.post("/reviews", async (req, res) => {
+    try {
+      const dbReviewData = await Reviews.create(req.body)
+      res.json({ status: "success", payload: dbReviewData })
+    } catch(err){
+      res.status(500).json({ status: "error", payload: err.message })
+    }
+  })
+
+
+  router.delete('reviews/:id', async (req, res) => {
     try {
       const reviewData = await Reviews.destroy({
         where: {
