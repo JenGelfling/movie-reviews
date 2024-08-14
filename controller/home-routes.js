@@ -4,6 +4,16 @@ const router = require('express').Router();
 const { Likes, Reviews, Users } = require('../models');
 
 
+router.get("/api/users", async (req, res) => {
+  try {
+    const userData = await Users.findAll({})
+    res.json({ status: "success", payload: userData })
+    console.log(userData)
+  } catch(err){
+    console.log(userData)
+    res.status(500).json({ status: "error", payload: err.message })
+  }
+})
 
 router.get('/', async (req, res) => {
     try {
