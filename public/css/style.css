@@ -45,3 +45,17 @@ body{
     font-size: x-large;
     padding-top: 10px;
 }
+.movie-card{
+    border-top: 2px solid rgb(146, 146, 146);
+}
+.movie-card-poster{
+    height: 150px;
+    width: auto;
+    padding-bottom: 12px;
+}
+.movie-card-title{
+    padding: 10px;
+}
+.movie-card-p{
+    padding-left: 14px;
+}
