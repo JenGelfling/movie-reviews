@@ -1,5 +1,7 @@
 const router = require('express').Router();
-const { Movie, Reviews, Users } = require('../models');
+
+const { Like, Reviews, User } = require('../models');
+
 
 
 
@@ -8,6 +10,22 @@ const { Movie, Reviews, Users } = require('../models');
 
 
 //to display a set group of current movies, I could create an array of objects here in to make it be consistent. Also probably not functional yet 
+
+
+router.get('/', async (req, res) => {
+    try {
+      const dbReviewData = await Reviews.findAll({});
+      const reviews = dbReviewData.map((review) =>
+        review.get({ plain: true })
+      );
+      console.log(reviews)
+      res.render('homepage', {reviews});
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  });
+
 
 
 
@@ -34,9 +52,30 @@ const { Movie, Reviews, Users } = require('../models');
   //   res.render('movie', movieToRender)
   // });
 
-//same but for x amount of reviews on the page
+
+
+// router.get('/', async (req, res) => {
+//     try {
+//       const dbMovieData = await Movie.findAll({});
+//       const movies = dbMovieData.map((movie) =>
+//         movie.get({ plain: true })
+//       );
+//       console.log()
+//       res.render('homepage', {movies});
+//     } catch (err) {
+//       console.log(err);
+//       res.status(500).json(err);
+//     }
+//   });
+
+
   router.get('/', async (req, res) => {
     try {
+
+      const dbLikesData = await Movie.findAll({});
+      const likes = dbLikesData.map((like) =>
+        like.get({ plain: true })
+
       const dbReviewData = await Reviews.findAll({
         // include: [
         //   {
@@ -48,8 +87,10 @@ const { Movie, Reviews, Users } = require('../models');
   
       const reviews = dbReviewData.map((review) =>
         review.get({ plain: true })
+
       );
-      res.render('homepage', {reviews,});
+      console.log(likes)
+      res.render('homepage', {likes});
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
@@ -57,13 +98,13 @@ const { Movie, Reviews, Users } = require('../models');
   });
 
   //to display a set group of current movies, I could create an array of objects here in to make it be consistent. Also probably not functional yet 
-  router.get('/review/:num', async (req,res) => {
-    const idx = parseInt(req.params.num) -1;
-    console.log(idx);
-    const reviewToRender= Reviews[idx]
-    console.log(reviewToRender);
-    res.render('review', reviewToRender)
-  });
+//   router.get('/movie/:num', async (req,res) => {
+//     const idx = parseInt(req.params.num) -1;
+//     console.log(idx);
+//     const movieToRender= Movie[idx]
+//     console.log(movieToRender);
+//     res.render('movie', movieToRender)
+//   });
 
 
 router.get('/login', (req, res) => {

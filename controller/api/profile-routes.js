@@ -3,30 +3,32 @@ const { Reviews } = require('../../models');
 
 
 //the profile page will have the review history of the user
-router.get('/review', async (req, res) => {
-    try {
-      // Get all projects and JOIN with user data
-      const reviewData = await Reviews.findAll({
-        // include: [
-        //   {
-        //     model: Reviews,
-        //     attributes: ['name'],
-        //   },
-        // ],
-      });
+
+// router.get('/review', async (req, res) => {
+//     try {
+//       // Get all projects and JOIN with user data
+//       const reviewData = await Reviews.findAll({
+//         include: [
+//           {
+//             model: Reviews,
+//             attributes: ['name'],
+//           },
+//         ],
+//       });
+
   
-      // Serialize data so the template can read it
-      const reviews = reviewData.map((review) => review.get({ plain: true }));
+//       // Serialize data so the template can read it
+//       const reviews = reviewData.map((review) => review.get({ plain: true }));
   
-      // Pass serialized data and session flag into template
-      res.render('profile', { 
-        reviews, 
-        logged_in: req.session.logged_in 
-      });
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  });
+//       // Pass serialized data and session flag into template
+//       res.render('profile', { 
+//         reviews, 
+//         logged_in: req.session.logged_in 
+//       });
+//     } catch (err) {
+//       res.status(500).json(err);
+//     }
+//   });
 
   router.get('/review/:id', async (req, res) => {
     try {
