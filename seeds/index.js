@@ -1,6 +1,6 @@
 const sequelize = require('../config/connection');
-const { User, Movie } = require("../models");
-const { userdata, moviedata } = require("./seeds");
+const { Users, Likes } = require("../models");
+const { userdata, likedata } = require("./seeds");
 
 
 const seedDatabase = async () => {
@@ -9,17 +9,17 @@ const seedDatabase = async () => {
     await sequelize.sync({ force: true });
 
     // Seed Users
-    const seededUsers = await User.bulkCreate(userdata, {
+    const seededUsers = await Users.bulkCreate(userdata, {
       individualHooks: true,
       returning: true
     });
     console.log(`${seededUsers.length} users have been created.`);
 
     // Seed Movies
-    const seededMovies = await Movie.bulkCreate(moviedata, {
+    const seededLikes = await Likes.bulkCreate(likedata, {
       returning: true
     });
-    console.log(`${seededMovies.length} movies have been created.`);
+    console.log(`${seededLikes.length} likes have been created.`);
 
     console.log("Seeding complete!");
   } catch (err) {

@@ -19,22 +19,26 @@ Reviews.init(
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'user',
+          model: 'users',
           key: 'id'
         }
     },
-    like: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0
-    },
-    movie_id: {
+    like_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-          model: 'movie',
+          model: 'likes',
           key: 'id'
         }
     },
+    // movie_id: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    //     references: {
+    //       model: 'movies',
+    //       key: 'id'
+    //     }
+    // },
     is_public: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
@@ -44,7 +48,8 @@ Reviews.init(
     sequelize,
     timestamps: true,
     underscored: true,
-    modelName: 'reviews'
+    modelName: 'reviews',
+    tableName: 'reviews'
   }
 );
 
