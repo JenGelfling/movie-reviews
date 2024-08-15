@@ -4,6 +4,39 @@ const router = require('express').Router();
 const { Likes, Reviews, Users } = require('../models');
 
 
+const apiKey = '4e8db45b';
+
+// Route to fetch movie data
+router.get('/movie', async (req, res) => {
+    const { title } = req.query;
+
+  if (!title) {
+    return res.status(400).json({ error: 'Title parameter is required' });
+  }
+
+  const url = `http://www.omdbapi.com/?t=${title}&apikey=${apiKey}`;
+
+  try {
+    const response = await fetch(url);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    if (data.Response === 'False') {
+      return res.status(404).json({ error: data.Error });
+    }
+
+    res.json(data);
+  } catch (error) {
+    console.error('Fetch Error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 router.get("/api/users", async (req, res) => {
   try {
     const userData = await Users.findAll({})
