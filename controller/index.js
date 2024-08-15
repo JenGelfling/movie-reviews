@@ -6,7 +6,15 @@ const homeRoutes = require('./home-routes.js');
 
 router.use('/api', apiRoutes);
 
-router.post("/api/signin", (req, res) => {
+router.post("/api/login", (req, res) => {
+
+    console.log("HERE DAMMIT")
+    
+    res.json({ status: "ok" })
+})
+
+
+router.post("/api/users", (req, res) => {
 
     console.log("HERE DAMMIT")
     

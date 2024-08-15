@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Users } = require('../../models');
 
 
-router.get("/users", async (req, res) => {
+router.get("api/users", async (req, res) => {
     try {
       const userData = await Users.findAll({})
       res.json({ status: "success", payload: userData })
