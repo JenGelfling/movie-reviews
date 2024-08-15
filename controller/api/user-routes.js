@@ -1,7 +1,22 @@
-// const router = require('express').Router();
-// const { User } = require('../../models');
+const router = require('express').Router();
+const { Users } = require('../../models');
 
-// // CREATE new user
+
+router.get("/users", async (req, res) => {
+    try {
+      const userData = await Users.findAll({})
+      res.json({ status: "success", payload: userData })
+      console.log(userData)
+    } catch(err){
+      console.log(userData)
+      res.status(500).json({ status: "error", payload: err.message })
+    }
+  })
+
+
+
+
+// CREATE new user
 // router.post('/', async (req, res) => {
 //   try {
 //     const dbUserData = await User.create({ //user.create is because I don't have user obj info yet
@@ -75,4 +90,4 @@
 //   }
 // });
 
-// module.exports = router;
+module.exports = router;
