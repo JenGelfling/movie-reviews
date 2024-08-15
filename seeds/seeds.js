@@ -1,9 +1,9 @@
 
 const userdata = [
-    { fname: 'John', lname: 'Johnson', email: 'jjohnson@gmail.com', password: 'jjohnson' },
-    { fname: 'Mary', lname: 'Smith', email: 'msmith@gmail.com', password: 'msmith' },
-    { fname: 'Alice', lname: 'Henderson', email: 'ahenderson@gmail.com', password: 'ahenderson' },
-    { fname: 'Ralph', lname: 'Courson', email: 'rcourson@gmail.com', password: 'rcourson' }
+    { username: 'Johnson', email: 'jjohnson@gmail.com', password: 'jjohnson' },
+    { username: 'Smith', email: 'msmith@gmail.com', password: 'msmith' },
+    { username: 'Henderson', email: 'ahenderson@gmail.com', password: 'ahenderson' },
+    { username: 'Courson', email: 'rcourson@gmail.com', password: 'rcourson' }
   ]
 
 const likedata = [
