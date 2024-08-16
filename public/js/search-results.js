@@ -1,59 +1,79 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//     const searchBar = document.getElementById('search-bar');
-//     const resultsContainer = document.getElementById('results-container');
-//     const searchTitle = document.getElementById('search-title');
 
-//     searchBar.addEventListener('keyup', async (event) => {
-//         const title = searchBar.value.trim();
+const searchForm = document.getElementById("search-form")
+const searchBar = document.getElementById("search-bar")
 
-//         if (title.length < 3) {
-//             resultsContainer.innerHTML = '';
-//             searchTitle.textContent = 'Results for:';
-//             return;
-//         }
+let search = ''
+let resultsFor = document.querySelector("#results-h4")
+let fetchedMovies = []
 
-//         try {
-//             const response = await fetch(`/movie?title=${encodeURIComponent(title)}`);
+searchForm.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter'){
+        event.preventDefault();
+        let search = searchBar.value
+        buildLink(search);
+    }
+});
 
-//             if (!response.ok) {
-//                 throw new Error('Network response was not ok');
-//             }
 
-//             const data = await response.json();
 
-//             if (data.Error) {
-//                 resultsContainer.innerHTML = `<p>${data.Error}</p>`;
-//                 searchTitle.textContent = `Results for "${title}":`;
-//             } else {
-//                 searchTitle.textContent = `Results for "${data.Title}":`;
 
-//                 resultsContainer.innerHTML = `
-//                     <div class="movie-card container d-flex flex-column">
-//                         <div class="movie-card-title">
-//                             <h5>${data.Title}</h5>
-//                         </div>
-//                         <div class="container d-flex">
-//                             <img class="movie-card-poster" src="${data.Poster}" alt="${data.Title} Poster" style="width:200px;">
-//                             <p class="movie-card-p">${data.Plot}</p>
-//                         </div>
-//                     </div>
-//                 `;
-//             }
-//         } catch (error) {
-//             console.error('Fetch error:', error);
-//             resultsContainer.innerHTML = '<p>There was an error fetching the data.</p>';
-//             searchTitle.textContent = `Results for "${title}":`;
-//         }
-//     });
-// });
 
-// const { apiKey }
+buildLink(search)
 
-// const router = require('express').Router();
-// require('dotenv').config();
+async function buildLink(search) {
+    urlLink = `http://www.omdbapi.com/?s=${search}&apikey=4e8db45b`
 
-// const apiKey = process.env.apiKey
+    let response = await fetchFromApi(urlLink);
+    buildAndAppend(search, response);
 
+}
+
+async function fetchFromApi(url){
+    let result;
+     
+    const response = await fetch(url, {
+        method: 'GET'
+
+    }).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        result = data;
+    })
+    
+    fetchedMovies = result;
+    return result;
+}
+
+function buildAndAppend(search, response) {
+    if (response.Response === "False"){ 
+        resultsFor.textContent = `No results found for: "${search}"`
+        let searchResults = document.querySelector("#search-results")
+        searchResults.innerHTML = ``
+    } else {
+    let searchResults = document.querySelector("#search-results")
+    searchResults.innerHTML = ``
+    for (let i = 0; i < response.Search.length; i++) {
+        let tempCard = buildElement(search, response.Search[i]);
+
+        searchResults.append(tempCard);
+    }
+}
+}
+
+function buildElement(search, data) {
+    let div = document.createElement("div");
+    resultsFor.textContent = `Results for: "${search}"`
+    div.setAttribute("class", "movie-card container d-flex")
+    div.innerHTML = `
+<a href="/"><img id="movie-card-poster" href="/" src="${data.Poster}" alt="Poster"></a>
+                <div class="container d-flex flex-column">
+                  <a href="/" class="movie-card-h4 text-black">${data.Title}</a>
+                  <a href="/" class="movie-card-h4 text-black">${data.Year}</a>
+                </div>
+    `
+        ;
+    return div;
+}
 document.getElementById('search-form').addEventListener('submit', async (event) => {
     event.preventDefault();
 
