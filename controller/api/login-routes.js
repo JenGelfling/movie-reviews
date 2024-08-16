@@ -3,9 +3,11 @@ const { Users } = require('../../models');
 
 console.log("/api/login")
 
+
 //Create a new user
 router.post('/login', async (req, res) => {
   console.log("ignore me")
+  console.log(req.body)
   try {
     const userData = await Users.create(req.body);
 
@@ -20,9 +22,10 @@ router.post('/login', async (req, res) => {
   }
 });
 
+//TODO: this is breaking the login
 router.post('/login', async (req, res) => {
   console.log("login route")
-
+  console.log(req.body)
   try {
     const userData = await Users.findOne({ where: { email: req.body.email } });
 
@@ -54,7 +57,8 @@ router.post('/login', async (req, res) => {
   }
 });
 
-router.post('/logout', (req, res) => {
+router.post('/api/logout', async(req, res) => {
+  console.log("logout route)")
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -63,5 +67,7 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+
 
 module.exports = router;
