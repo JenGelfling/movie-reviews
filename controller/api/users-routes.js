@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Users } = require('../../models');
 
 
-router.get("/users", async (req, res) => {
+router.get("api/users", async (req, res) => {
     try {
       const userData = await Users.findAll({})
       res.json({ status: "success", payload: userData })
@@ -12,6 +12,22 @@ router.get("/users", async (req, res) => {
       res.status(500).json({ status: "error", payload: err.message })
     }
   })
+
+//Create a new user
+  router.post('/users', async (req, res) => {
+    try {
+      const userData = await Users.create(req.body);
+  
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+  
+        res.status(200).json(userData);
+      });
+    } catch (err) {
+      res.status(400).json(err);
+    }
+  });
 
 
 
