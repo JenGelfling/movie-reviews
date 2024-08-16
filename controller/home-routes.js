@@ -4,7 +4,11 @@ const router = require('express').Router();
 const { Likes, Reviews, Users } = require('../models');
 
 
-const apiKey = '4e8db45b';
+// Route to render the search results page
+router.get('/search-results', (req, res) => {
+  res.render('partials/search-results');
+});
+
 
 // Route to fetch movie data
 router.get('/movie', async (req, res) => {
@@ -14,7 +18,7 @@ router.get('/movie', async (req, res) => {
     return res.status(400).json({ error: 'Title parameter is required' });
   }
 
-  const url = `http://www.omdbapi.com/?t=${title}&apikey=${apiKey}`;
+  const url = `https://www.omdbapi.com/?t=${title}&apikey=${apiKey}`;
 
   try {
     const response = await fetch(url);
@@ -28,13 +32,48 @@ router.get('/movie', async (req, res) => {
     if (data.Response === 'False') {
       return res.status(404).json({ error: data.Error });
     }
-
+    console.log(data);
     res.json(data);
   } catch (error) {
     console.error('Fetch Error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+router.get("/api/likes", async (req, res) => {
+  try {
+    const likeData = await Likes.findAll({})
+    res.json({ status: "success", payload: likeData })
+    console.log(likeData)
+  } catch(err){
+    console.log(likeData)
+    res.status(500).json({ status: "error", payload: err.message })
+  }
+});
+
+router.get("/api/reviews", async (req, res) => {
+  try {
+    const reviewData = await Reviews.findAll({})
+    res.json({ status: "success", payload: reviewData })
+    console.log(reviewData)
+  } catch(err){
+    console.log(reviewData)
+    res.status(500).json({ status: "error", payload: err.message })
+  }
+})
+
+router.post("/api/reviews", async (req, res) => {
+  try {
+    const dbReviewData = await Reviews.create(req.body)
+    res.json({ status: "success", payload: dbReviewData })
+  } catch(err){
+    res.status(500).json({ status: "error", payload: err.message })
+  }
+})
+
+
+
+// -------------------
 
 
 router.get("/api/users", async (req, res) => {

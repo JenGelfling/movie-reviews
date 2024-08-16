@@ -15,6 +15,10 @@ Reviews.init(
         type: DataTypes.STRING,
         allowNull: false
     },
+    content: {
+        type: DataTypes.TEXT,
+        allowNull: true
+    },
     author_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -25,7 +29,7 @@ Reviews.init(
     },
     like_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         references: {
           model: 'likes',
           key: 'id'

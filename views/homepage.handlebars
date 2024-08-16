@@ -66,7 +66,11 @@
     </header>
     <main class="container">
         <div class="container">
-            <input id="search-bar" class="col-12 mt-5 ml-5 mr-5 rounded" type="text" placeholder="Search for movies">
+            <form id="search-form">
+                <input type="text" id="title" class="col-12 mt-5 ml-5 mr-5 rounded" placeholder="Enter movie title">
+                <button type="submit" class="col-12 ml-5 rounded" justify-content="center">Search</button>
+            </form>
+            {{!-- <input id="search-bar" class="col-12 mt-5 ml-5 mr-5 rounded" type="text" placeholder="Search for movies"> --}}
         </div>
         <div class="container mt-4 text-center">
             <div class="row mb-4">
