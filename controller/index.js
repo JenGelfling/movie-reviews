@@ -8,17 +8,47 @@ const { Users, Reviews, Likes } = require('../models');
 router.use('/api', apiRoutes);
 
 //Login route
+
+//Todo: this is brekaing the login
 router.post("/api/login", async(req, res) => {
-  // console.log("body", req.body)
+  console.log("body", req.body)
     console.log("HERE DAMNIT")
+    try {
+      const userData = await Users.findOne({ where: { email: req.body.email } });
+  
+      if (!userData) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+  
+      const validPassword = await userData.checkPassword(req.body.password);
+  
+      if (!validPassword) {
+        res
+          .status(400)
+          .json({ message: 'Incorrect email or password, please try again' });
+        return;
+      }
+  
+      req.session.save(() => {
+        req.session.user_id = userData.id;
+        req.session.logged_in = true;
+        
+        res.json({ user: userData, message: 'You are now logged in!' });
+      });
+  
+    } catch (err) {
+      res.status(400).json(err);
+    }
     
-    
-    res.json({ status: "ok" })
+    // res.json({ status: "ok" })
 })
 
 
 router.post("/api/users", async (req, res) => {
-  console.log("body", req.body)
+  console.log("body", req.body) //This is printing as an empty array
   try {
     const userData = await Users.create(req.body);
     console.log(userData)
@@ -59,7 +89,7 @@ router.get('/api/reviews', async (req, res) => {
       include: [
         {
           model: Reviews,
-          attributes: ['title', "like_id", 'is_public'],
+          attributes: ['title'],
         },
       ],
     });
@@ -83,7 +113,7 @@ router.get('/api/reviews', async (req, res) => {
       include: [
         {
           model: Reviews,
-          attributes: ['name'],
+          attributes: ['title'],
         },
       ],
     });
@@ -110,7 +140,7 @@ router.post("/api/reviews", async (req, res) => {
   }
 })
 
-router.delete('reviews/:id', async (req, res) => {
+router.delete('/api/reviews/:id', async (req, res) => {
   try {
     const reviewData = await Reviews.destroy({
       where: {
@@ -129,6 +159,28 @@ router.delete('reviews/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+//Likes routes
+
+router.post("/api/likes", async (req, res) => {
+  try {
+    const dbLikesData = await Likes.create(req.body)
+    res.json({ status: "success", payload: dbLikesData })
+  } catch(err){
+    res.status(500).json({ status: "error", payload: err.message })
+  }
+})
+
+
+//removing that like
+router.delete("/api/likes/:id", async (req, res) => {
+  try {
+    const dbLikesData = await Likes.destroy({ where: { id: req.params.id } })
+    res.json({ status: "success", payload: dbLikesData })
+  } catch(err){
+    res.status(500).json({ status: "error", payload: err.message })
+  }
+})
 
 router.use('/', homeRoutes);
 

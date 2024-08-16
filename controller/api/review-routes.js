@@ -52,14 +52,14 @@ router.get('/review', async (req, res) => {
 
 
 
-  router.post("/reviews", async (req, res) => {
-    try {
-      const dbReviewData = await Reviews.create(req.body)
-      res.json({ status: "success", payload: dbReviewData })
-    } catch(err){
-      res.status(500).json({ status: "error", payload: err.message })
-    }
-  })
+  // router.post("/reviews", async (req, res) => {
+  //   try {
+  //     const dbReviewData = await Reviews.create(req.body)
+  //     res.json({ status: "success", payload: dbReviewData })
+  //   } catch(err){
+  //     res.status(500).json({ status: "error", payload: err.message })
+  //   }
+  // })
 
 
   router.delete('reviews/:id', async (req, res) => {

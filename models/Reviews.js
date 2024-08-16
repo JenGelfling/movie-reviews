@@ -17,7 +17,7 @@ Reviews.init(
     },
     author_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false, //change back to false
         references: {
           model: 'users',
           key: 'id'
@@ -25,7 +25,7 @@ Reviews.init(
     },
     like_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true, //change back to false
         references: {
           model: 'likes',
           key: 'id'
