@@ -4,6 +4,7 @@ const apiRoutes = require('./api');
 const homeRoutes = require('./home-routes.js');
 const { Users } = require('../models');
 
+
 router.use('/api', apiRoutes);
 
 router.post("/api/login", async(req, res) => {
@@ -12,6 +13,7 @@ router.post("/api/login", async(req, res) => {
     
     res.json({ status: "ok" })
 })
+
 
 router.post("/api/users", async (req, res) => {
   console.log("body", req.body)
@@ -34,6 +36,7 @@ router.post("/api/users", async (req, res) => {
   
   // res.json({ status: "ok" })
 })
+
 
 
 
