@@ -61,6 +61,7 @@ function buildAndAppend(search, response) {
 }
 
 function buildElement(search, data) {
+    console.log(resultsFor)
     let div = document.createElement("div");
     resultsFor.textContent = `Results for: "${search}"`
     div.setAttribute("class", "movie-card container d-flex")
