@@ -16,13 +16,13 @@
     href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-{{#each reviews as |review|}}
+{{!-- {{#each reviews as |review|}}
 
 <p>Movie Title: {{review.title}}</p>
 <p>Review Author: {{review.author_id}}</p>
 <p>Review: {{review.content}}</p>
 
-{{/each}}  
+{{/each}}   --}}
 <body class="bg-light">
     <header class="p-3 bg-dark text-white">
         <div class="container">
@@ -68,7 +68,7 @@
     </header>
     <main class="container">
         <div class="container">
-            <form id="search-form">
+            <form id="search-form" action="/search-results" method="get">
                 <input type="text" id="title" class="col-12 mt-5 ml-5 mr-5 rounded" placeholder="Enter movie title">
                 <button type="submit" class="col-12 ml-5 rounded" justify-content="center">Search</button>
             </form>

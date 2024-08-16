@@ -3,7 +3,6 @@ const router = require('express').Router();
 const { Likes, Reviews, Users } = require('../models');
 
 
-
 // Added some things here to be able to test stuff:
 // Route to render the search results page
 require('dotenv').config();
@@ -58,9 +57,13 @@ router.get("/api/likes", async (req, res) => {
 // Route to fetch review data
 router.get("/api/reviews", async (req, res) => {
   try {
-    const reviewData = await Reviews.findAll({})
-    res.json({ status: "success", payload: reviewData })
+    const reviewData = await Reviews.findAll({
+      include: Users,
+      as: 'author'
+    })
     console.log(reviewData)
+    res.json({ status: "success", payload: reviewData })
+
   } catch(err){
     res.status(500).json({ status: "error", payload: err.message })
   }
@@ -91,12 +94,16 @@ router.get("/api/users", async (req, res) => {
 
 router.get('/', async (req, res) => {
     try {
-      const dbReviewData = await Reviews.findAll({});
+      const dbReviewData = await Reviews.findAll({ include: Users });
       const reviews = dbReviewData.map((review) =>
         review.get({ plain: true })
       );
+      const userData = await Reviews.findAll({ include: Users });
+      const users = userData.map((user) =>
+        user.get({ plain: true })
+      );
       console.log(reviews)
-      res.render('homepage', {reviews});
+      res.render('homepage', {reviews, users});
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
