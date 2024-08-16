@@ -190,8 +190,16 @@
                 <h4 id="search-title" class="ml-0 pl-0 col-3">Results for:</h4>
             </div>
         </div>
-        <div class="container d-flex flex-column justify-content-center" id="results-container">
+        <div class="container d-flex flex-column justify-content-center" id="results">
             <!-- Movie cards will be inserted here -->
+            {{#if error}}
+            <p>{{error}}</p>
+            {{else}}
+            <h2>{{title}} ({{year}})</h2>
+            <p><strong>Director:</strong> {{director}}</p>
+            <p><strong>Plot:</strong> {{plot}}</p>
+            <img src="{{poster}}" alt="{{title}} Poster" style="width:200px;">
+            {{/if}}
         </div>
     </main>
 

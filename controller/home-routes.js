@@ -1,14 +1,18 @@
 const router = require('express').Router();
 
-
 const { Likes, Reviews, Users } = require('../models');
 
 
+
+// Added some things here to be able to test stuff:
 // Route to render the search results page
+require('dotenv').config();
+
+const apiKey = process.env.apiKey
+
 router.get('/search-results', (req, res) => {
   res.render('partials/search-results');
 });
-
 
 // Route to fetch movie data
 router.get('/movie', async (req, res) => {
@@ -40,41 +44,38 @@ router.get('/movie', async (req, res) => {
   }
 });
 
+// Route to fetch like data
 router.get("/api/likes", async (req, res) => {
   try {
     const likeData = await Likes.findAll({})
     res.json({ status: "success", payload: likeData })
     console.log(likeData)
   } catch(err){
-    console.log(likeData)
     res.status(500).json({ status: "error", payload: err.message })
   }
 });
 
+// Route to fetch review data
 router.get("/api/reviews", async (req, res) => {
   try {
     const reviewData = await Reviews.findAll({})
     res.json({ status: "success", payload: reviewData })
     console.log(reviewData)
   } catch(err){
-    console.log(reviewData)
     res.status(500).json({ status: "error", payload: err.message })
   }
 })
 
+// Route to post new review data
 router.post("/api/reviews", async (req, res) => {
   try {
-    const dbReviewData = await Reviews.create(req.body)
-    res.json({ status: "success", payload: dbReviewData })
+    const reviewData = await Reviews.create(req.body)
+    res.json({ status: "success", payload: reviewData })
+    console.log(reviewData)
   } catch(err){
     res.status(500).json({ status: "error", payload: err.message })
   }
 })
-
-
-
-// -------------------
-
 
 router.get("/api/users", async (req, res) => {
   try {
@@ -82,10 +83,11 @@ router.get("/api/users", async (req, res) => {
     res.json({ status: "success", payload: userData })
     console.log(userData)
   } catch(err){
-    console.log(userData)
     res.status(500).json({ status: "error", payload: err.message })
   }
-})
+}) 
+
+// ------------------- end of added testing stuff. Maybe move the above to other files if it works out.
 
 router.get('/', async (req, res) => {
     try {
