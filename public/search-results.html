@@ -16,6 +16,7 @@
     rel="stylesheet"
     href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
   />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="bg-light">
     <header class="p-3 bg-dark text-white">
@@ -62,56 +63,36 @@
     </header>
     <main>
         <div class="container d-flex justify-content-center">
-            <input id="search-bar" class="col-12 mt-5 ml-5 mr-5 rounded" type="text" placeholder="Search for movies">
+          <form id="search-form">
+            <input type="text" id="search-bar" class="col-12 mt-5 ml-5 mr-5 rounded" placeholder="Search for movies...">
+        </form>
         </div>
         <div class="container mt-4 text-center">
             <div class="row mb-4">
-                <h4 class=" ml-0 pl-0 col-3">Results for "moonlight":</h4>
+                <h4 id="results-h4"class=" ml-0 pl-0 col-3">:</h4>
             </div>
         </div>
-        <div class="container d-flex flex-column justify-content-center">
-            <!-- This is the movie card that will generate -->
-            <div class="movie-card container d-flex flex-column">
-                <div class="movie-card-title">
-                    <h5>Moonlight</h5>
-                </div>
-                <div class="container d-flex">
-                    <img href="/" class="movie-card-poster" src="./images/movie_poster.jpg" alt="Poster">
-                    <p class="movie-card-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore sapiente dicta ab nobis magni eveniet tempora expedita delectus omnis laboriosam reiciendis est, debitis minus et, repudiandae ex quia perferendis magnam.</p>
-                </div>
+
+
+        <div id="search-results" class="movie-results d-flex flex-wrap">
+            <div class="movie-card container d-flex">
+              <!-- <a href="/"><img id="movie-card-poster" href="/" src="./images/movie_poster.jpg" alt="Poster"></a>
+                <div class="container d-flex flex-column">
+                  <a href="/" class="movie-card-h4 text-black">Willy Wonka and The Chocolate Factory</a>
+                  <a href="/" class="movie-card-h4 text-black">(2016)</a>
+                </div> -->
             </div>
-            <div class="movie-card container d-flex flex-column">
-                <div class="movie-card-title">
-                    <h5>Moonlight</h5>
-                </div>
-                <div class="container d-flex">
-                    <img href="/" class="movie-card-poster" src="./images/movie_poster.jpg" alt="Poster">
-                    <p class="movie-card-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore sapiente dicta ab nobis magni eveniet tempora expedita delectus omnis laboriosam reiciendis est, debitis minus et, repudiandae ex quia perferendis magnam.</p>
-                </div>
-            </div>
-            <div class="movie-card container d-flex flex-column">
-                <div class="movie-card-title">
-                    <h5>Moonlight</h5>
-                </div>
-                <div class="container d-flex">
-                    <img href="/" class="movie-card-poster" src="./images/movie_poster.jpg" alt="Poster">
-                    <p class="movie-card-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore sapiente dicta ab nobis magni eveniet tempora expedita delectus omnis laboriosam reiciendis est, debitis minus et, repudiandae ex quia perferendis magnam.</p>
-                </div>
-            </div>
-            <div class="movie-card container d-flex flex-column">
-                <div class="movie-card-title">
-                    <h5>Moonlight</h5>
-                </div>
-                <div class="container d-flex">
-                    <img href="/" class="movie-card-poster" src="./images/movie_poster.jpg" alt="Poster">
-                    <p class="movie-card-p">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore sapiente dicta ab nobis magni eveniet tempora expedita delectus omnis laboriosam reiciendis est, debitis minus et, repudiandae ex quia perferendis magnam.</p>
-                </div>
-            </div>
+            
         </div>
+
+
+
+
     </main>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src = "./js/search-results.js"></script>
 </body>
 </html>
