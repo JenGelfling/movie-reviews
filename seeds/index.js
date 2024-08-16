@@ -1,6 +1,6 @@
 const sequelize = require('../config/connection');
-const { Users, Likes } = require("../models");
-const { userdata, likedata } = require("./seeds");
+const { Users, Likes, Reviews } = require("../models");
+const { userdata, likedata, reviewdata } = require("./seeds");
 
 
 const seedDatabase = async () => {
@@ -15,11 +15,18 @@ const seedDatabase = async () => {
     });
     console.log(`${seededUsers.length} users have been created.`);
 
-    // Seed Movies
+    // Seed Likes
     const seededLikes = await Likes.bulkCreate(likedata, {
       returning: true
     });
     console.log(`${seededLikes.length} likes have been created.`);
+
+    // Seed Reviews
+    const seededReviews = await Reviews.bulkCreate(reviewdata, {
+      individualHooks: true,
+      returning: true
+    });
+    console.log(`${seededReviews.length} reviews have been created.`);
 
     console.log("Seeding complete!");
   } catch (err) {
