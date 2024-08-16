@@ -157,11 +157,16 @@ router.get('/', async (req, res) => {
   });
 
   router.get('/login', (req, res) => {
+    console.log("HERE!!!")
+    console.log(req.session)
     if (req.session.loggedIn) {
-        res.redirect('/');
-        return;
+      console.log("why am I here")
+      res.render("homepage")
+        // res.redirect('/');
+        // return;
+    } else {
+      res.render('login');
     }
-    res.render('login');
   });
 
 
