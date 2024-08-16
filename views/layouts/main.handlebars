@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> --}}
 <html lang="en">
 
 <head>
@@ -10,9 +10,6 @@
 </head>
 
 <body>
-  <header>
-    <h1>Welcome to the Four Seasons Museum</h1>
-  </header>
   <nav>
     <a href="/">Home</a>
     {{#if loggedIn}}
@@ -22,18 +19,14 @@
     {{/if}}
   </nav>
   <main>
-    <aside>
-      <h2>Enjoy the galleries!</h2>
-    </aside>
-    <div class="gallery">
-
+    <div>
       {{{body}}}
-      
-    </div>
+      </div>
+    
   </main>
-  {{#if loggedIn}}
+  {{!-- {{#if loggedIn}}
   <script src="../../public/js/login.js"></script>
-  {{/if}}
+  {{/if}} --}}
 </body>
 
-</html>
+</html> 

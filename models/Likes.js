@@ -69,7 +69,7 @@ Likes.init(
     timestamps: true,
     underscored: true,
     modelName: 'likes',
-    tableName: 'likes',
+    freezeTableName: true
   }
 );
 

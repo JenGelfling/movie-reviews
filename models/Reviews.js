@@ -49,7 +49,7 @@ Reviews.init(
     timestamps: true,
     underscored: true,
     modelName: 'reviews',
-    tableName: 'reviews'
+    freezeTableName: true
   }
 );
 
