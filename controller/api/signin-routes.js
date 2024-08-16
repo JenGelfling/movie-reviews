@@ -1,10 +1,10 @@
-const router = require("express").Router(); 
+// const router = require("express").Router(); 
 
-router.post("/login", (req, res) => {
+// router.post("/login", (req, res) => {
 
-    console.log("HERE DAMMIT")
+//     console.log("HERE DAMMIT")
     
-    res.json({ status: "ok" })
-})
+//     res.json({ status: "ok" })
+// })
 
-module.exports = router;
+// module.exports = router;
