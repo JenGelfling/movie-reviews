@@ -21,7 +21,7 @@ Reviews.init(
     },
     author_id: {
         type: DataTypes.INTEGER,
-        allowNull: false, //change back to false
+        allowNull: false,
         references: {
           model: 'users',
           key: 'id'
@@ -29,8 +29,7 @@ Reviews.init(
     },
     like_id: {
         type: DataTypes.INTEGER,
-
-        allowNull: true, //change back to false
+        allowNull: false,
         references: {
           model: 'likes',
           key: 'id'
@@ -47,7 +46,11 @@ Reviews.init(
     is_public: {
         type: DataTypes.BOOLEAN,
         defaultValue: true
-    } 
+    },
+    score: {
+      type: DataTypes.STRING,
+      allowNull: true,
+  } 
   },
   {
     sequelize,
