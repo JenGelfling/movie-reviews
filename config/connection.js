@@ -44,7 +44,13 @@ NODE_ENV === "production"
         max: 3,
         min: 1,
         idle: 10000
-      }
+      },
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false
+        }
+      },
   })
   : new Sequelize(
     `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`, {
