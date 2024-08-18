@@ -103,7 +103,8 @@ router.get('/', async (req, res) => {
         user.get({ plain: true })
       );
       console.log(reviews)
-      res.render('homepage', {reviews, users});
+      res.render('homepage', {reviews, users, loggedIn: req.session.loggedIn});
+      console.log(req.session.loggedIn)
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
