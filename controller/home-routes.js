@@ -148,13 +148,13 @@ router.get('/', async (req, res) => {
     }
   });
 
-  router.get('/profile', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/profile');
-      return;
-    }
-    res.render('profile');
-  });
+  // router.get('/profile', (req, res) => {
+  //   if (req.session.loggedIn) {
+  //     res.redirect('/profile');
+  //     return;
+  //   }
+  //   res.render('profile');
+  // });
 
   router.get('/login', (req, res) => {
     console.log("HERE!!!")
@@ -169,6 +169,31 @@ router.get('/', async (req, res) => {
     }
   });
 
+  router.get('/search-results', (req, res) => {
+    console.log("HERE!!!")
+    console.log(req.session)
+    if (req.session.loggedIn) {
+      console.log("why am I here")
+      res.render("homepage")
+        // res.redirect('/');
+        // return;
+    } else {
+      res.render('search-results');
+    }
+  });
+
+  router.get('/movie-page', (req, res) => {
+    console.log("HERE!!!")
+    console.log(req.session)
+    if (req.session.loggedIn) {
+      console.log("why am I here")
+      res.render("homepage")
+        // res.redirect('/');
+        // return;
+    } else {
+      res.render('movie-page');
+    }
+  });
 
 
 
