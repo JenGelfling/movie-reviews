@@ -148,13 +148,13 @@ router.get('/', async (req, res) => {
     }
   });
 
-  router.get('/profile', (req, res) => {
-    if (req.session.loggedIn) {
-      res.redirect('/profile');
-      return;
-    }
-    res.render('profile');
-  });
+  // router.get('/profile', (req, res) => {
+  //   if (req.session.loggedIn) {
+  //     res.redirect('/profile');
+  //     return;
+  //   }
+  //   res.render('profile');
+  // });
 
   router.get('/login', (req, res) => {
     console.log("HERE!!!")
