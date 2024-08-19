@@ -273,11 +273,11 @@ router.post('/login', async (req, res) => {
     console.log(req.session)
     if (req.session.logged_in) {
       console.log("why am I here")
-      res.render("homepage")
-        res.redirect('/');
+      res.render("post-page")
+        
         return;
     } else {
-      res.render('post-page');
+      res.render('login');
     }
   });
 
