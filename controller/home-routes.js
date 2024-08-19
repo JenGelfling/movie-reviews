@@ -247,7 +247,9 @@
       console.log(req.session.logged_in)
       if (req.session.logged_in) {
         console.log("you get to search!")
-        res.render("search-results")
+        res.render("search-results", {
+          logged_in: req.session.logged_in
+        })
           // res.redirect('/');
           // return;
       } else {
@@ -287,7 +289,9 @@
       console.log(req.session)
       if (req.session.logged_in) {
         console.log("why am I here")
-        res.render("post-page")
+        res.render("post-page", {
+          logged_in: req.session.logged_in
+        })
           
           return;
       } else {
