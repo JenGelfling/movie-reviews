@@ -17,7 +17,7 @@ document.getElementById('search-form').addEventListener('submit', async (event) 
         
         if (data.Error) {
             document.getElementById('results').innerHTML = `<p>${data.Error}</p>`;
-        } else {
+        } else { 
             document.getElementById('results').innerHTML = `
                 <h2>${data.Title} (${data.Year})</h2>
                 <p><strong>Director:</strong> ${data.Director}</p>
