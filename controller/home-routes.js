@@ -9,9 +9,9 @@ require('dotenv').config();
 
 const apiKey = process.env.apiKey
 
-router.get('/search-results', (req, res) => {
-  res.render('partials/search-results');
-});
+// router.get('/search-results', (req, res) => {
+//   res.render('/search-results');
+// });
 
 // Route to fetch movie data
 router.get('/movie', async (req, res) => {
@@ -183,19 +183,32 @@ router.get('/', async (req, res) => {
     }
   });
 
-  router.get('/movie-page', (req, res) => {
+  // router.get('/movie-page', (req, res) => {
+  //   console.log("HERE!!!")
+  //   console.log(req.session)
+  //   if (req.session.loggedIn) {
+  //     console.log("why am I here")
+  //     res.render("homepage")
+  //       // res.redirect('/');
+  //       // return;
+  //   } else {
+  //     res.render('movie-page');
+  //   }
+  // });
+
+
+  router.get('/post-page', (req, res) => {
     console.log("HERE!!!")
     console.log(req.session)
     if (req.session.loggedIn) {
       console.log("why am I here")
       res.render("homepage")
-        // res.redirect('/');
-        // return;
+        res.redirect('/');
+        return;
     } else {
-      res.render('movie-page');
+      res.render('post-page');
     }
   });
-
 
 
   module.exports = router;
