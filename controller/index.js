@@ -98,13 +98,13 @@ router.get('/api/reviews', async (req, res) => {
     const reviews = reviewData.map((review) => review.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('profile', { 
+    res.render('post-page', { 
       reviews, 
       logged_in: req.session.logged_in 
     });
    } catch (err) {
      res.status(500).json(err);
-   }
+   } 
  });
 
  router.get('/api/review/:id', async (req, res) => {

@@ -12,3 +12,22 @@ const logout = async () => {
   };
   
   document.querySelector('#logout').addEventListener('click', logout);
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const logoutButton = document.getElementById('logout');
+    
+    if (logoutButton) {
+        logoutButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            // need to figure out how to actually log them out here:
+            fetch('/api/users/logout', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = '/login';
+                    } else {
+                        alert('Logout failed');
+                    }
+                });
+        });
+    }
+});
