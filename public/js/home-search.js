@@ -20,7 +20,10 @@ document.getElementById('search-form').addEventListener('submit', async (event) 
         } else { 
             document.getElementById('results').innerHTML = `
                 <h2>${data.Title} (${data.Year})</h2>
-                <p><strong>Director:</strong> ${data.Director}</p>
+                <p><strong>Director:</strong> ${data.Director}
+                <p><strong>Cast:</strong> ${data.Actors}</br>
+                <p><strong>Writer:</strong> ${data.Writer}</br>
+                <p><strong>Rated:</strong> ${data.Rated}</br>
                 <p><strong>Plot:</strong> ${data.Plot}</p>
                 <img src="${data.Poster}" alt="${data.Title} Poster" style="width:200px;">
             `;
