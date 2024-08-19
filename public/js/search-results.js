@@ -3,7 +3,7 @@ document.getElementById('search-form').addEventListener('submit', async (event) 
     event.preventDefault();
 
     const title = document.getElementById('title').value;
-    const url = `http://www.omdbapi.com/?t=${title}&apikey=4e8db45b`;
+    const url = `https://www.omdbapi.com/?t=${title}&apikey=4e8db45b`;
     
     try {
         const response = await fetch(url);

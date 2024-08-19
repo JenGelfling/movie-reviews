@@ -4,7 +4,7 @@ document.getElementById('search-form').addEventListener('submit', async (event) 
     event.preventDefault();
 
     const title = document.getElementById('title').value;
-    const url = `http://www.omdbapi.com/?t=${title}&apikey=4e8db45b`;
+    const url = `https://www.omdbapi.com/?t=${title}&apikey=4e8db45b`;
     
     try {
         const response = await fetch(url);
@@ -20,10 +20,10 @@ document.getElementById('search-form').addEventListener('submit', async (event) 
         } else { 
             document.getElementById('results').innerHTML = `
                 <h2>${data.Title} (${data.Year})</h2>
-                <p><strong>Director:</strong> ${data.Director}
-                <p><strong>Cast:</strong> ${data.Actors}</br>
-                <p><strong>Writer:</strong> ${data.Writer}</br>
-                <p><strong>Rated:</strong> ${data.Rated}</br>
+                <p><strong>Director:</strong> ${data.Director}</p>
+                <p><strong>Cast:</strong> ${data.Actors}</p>
+                <p><strong>Writer:</strong> ${data.Writer}</p>
+                <p><strong>Rated:</strong> ${data.Rated}</p>
                 <p><strong>Plot:</strong> ${data.Plot}</p>
                 <img src="${data.Poster}" alt="${data.Title} Poster" style="width:200px;">
             `;
