@@ -20,6 +20,8 @@
 
 // module.exports = sequelize;
 
+
+// Trying to get Render to work
 const Sequelize = require("sequelize");
 require('dotenv').config();
 
@@ -57,3 +59,5 @@ NODE_ENV === "production"
       logging: false, native: false
     }
   )
+
+module.exports = sequelize;
