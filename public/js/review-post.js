@@ -12,12 +12,12 @@ const reviewFormHandler = async (event) => {
     const comments = document.querySelector('#review-comments').value.trim();
     const score = document.querySelector('#review-score').value.trim();
 
-    if (logged_in && title && comments && score) {
+    if (title && comments && score) {
         try {
         console.log('sending review data')
         const response = await fetch('/api/reviews', {
             method: 'POST',
-            body: JSON.stringify({ title, comments, score, author_id: logged_in.userId }),
+            body: JSON.stringify({ title, comments, score}),
             headers: { 'Content-Type': 'application/json' },
         });
     
@@ -39,4 +39,4 @@ const reviewFormHandler = async (event) => {
 
 document.querySelector('#review-form').addEventListener('submit', reviewFormHandler);
 
-document.querySelector('#review-form').addEventListener('submit', reviewFormHandler);
+// document.querySelector('#review-form').addEventListener('submit', reviewFormHandler);

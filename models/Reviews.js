@@ -19,14 +19,14 @@ Reviews.init(
         type: DataTypes.TEXT,
         allowNull: true
     },
-    author_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: 'users',
-          key: 'id'
-        }
-    },
+    // author_id: {
+    //     type: DataTypes.INTEGER,
+    //     allowNull: false,
+    //     references: {
+    //       model: 'users',
+    //       key: 'id'
+    //     }
+    // },
     like_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
