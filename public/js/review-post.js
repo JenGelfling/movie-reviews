@@ -11,7 +11,7 @@ const reviewFormHandler = async (event) => {
     const title = document.querySelector('#review-title').value.trim();
     const content = document.querySelector('#review-comments').value.trim();
     const score = document.querySelector('#review-score').value.trim();
-    const author_id= 6
+    // const author_id= 6
 
     if (title && content && score) {
         try {
