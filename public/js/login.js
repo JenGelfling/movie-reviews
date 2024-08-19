@@ -1,31 +1,41 @@
 const loginFormHandler = async (event) => {
-
   event.preventDefault();
 
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
-  // const username = document.querySelector('#username-login').value.trim();
 
-  console.log("let's log in")
+  console.log("Attempting to log in");
 
   if (email && password) {
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
+    try {
+      const response = await fetch('/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
 
-    console.log(response)
+      console.log('Response Status:', response.status);
+      console.log('Response Headers:', response.headers);
 
-    const data = await response.json()
-    console.log(data)
+      const data = response.json();
+      // console.log('Response Data:', data);
 
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to log in.');
+      if (response.ok) {
+        console.log('Login successful:', data);
+        // const logged_in = req.session.logged_in;
+        // return logged_in;
+        document.location.replace('/');
+      } else {
+        // Detailed error message from server response
+        alert(data.message || 'Failed to log in.');
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      alert('An error occurred while logging in.');
     }
-  }
+  } else {
+    alert('Please enter both email and password.');
+  } return logged_in;
 };
 
 const signupFormHandler = async (event) => {
@@ -37,7 +47,7 @@ const signupFormHandler = async (event) => {
   const password = document.querySelector('#password-signup').value.trim();
 
   if (username && email && password) {
-    console.log('wtf')
+    console.log(username)
     const response = await fetch('/api/users', {
       method: 'POST',
       body: JSON.stringify({ username, email, password }),

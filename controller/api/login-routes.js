@@ -5,57 +5,57 @@ console.log("/api/login")
 
 
 //Create a new user
-router.post('/login', async (req, res) => {
-  console.log("ignore me")
-  console.log(req.body)
-  try {
-    const userData = await Users.create(req.body);
+// router.post('/login', async (req, res) => {
+//   console.log("ignore me")
+//   console.log(req.body)
+//   try {
+//     const userData = await Users.create(req.body);
 
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+//     req.session.save(() => {
+//       req.session.user_id = userData.id;
+//       req.session.logged_in = true;
 
-      res.status(200).json(userData);
-    });
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+//       res.status(200).json(userData);
+//     });
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 //TODO: this is breaking the login
-router.post('/login', async (req, res) => {
-  console.log("login route")
-  console.log(req.body)
-  try {
-    const userData = await Users.findOne({ where: { email: req.body.email } });
+// router.post('/login', async (req, res) => {
+//   console.log("login route")
+//   console.log(req.body)
+//   try {
+//     const userData = await Users.findOne({ where: { email: req.body.email } });
 
-    if (!userData) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
+//     if (!userData) {
+//       res
+//         .status(400)
+//         .json({ message: 'Incorrect email or password, please try again' });
+//       return;
+//     }
 
-    const validPassword = await userData.checkPassword(req.body.password);
+//     const validPassword = await userData.checkPassword(req.body.password);
 
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: 'Incorrect email or password, please try again' });
-      return;
-    }
+//     if (!validPassword) {
+//       res
+//         .status(400)
+//         .json({ message: 'Incorrect email or password, please try again' });
+//       return;
+//     }
 
-    req.session.save(() => {
-      req.session.user_id = userData.id;
-      req.session.logged_in = true;
+//     req.session.save(() => {
+//       req.session.user_id = userData.id;
+//       req.session.logged_in = true;
       
-      res.json({ user: userData, message: 'You are now logged in!' });
-    });
+//       res.json({ user: userData, message: 'You are now logged in!' });
+//     });
 
-  } catch (err) {
-    res.status(400).json(err);
-  }
-});
+//   } catch (err) {
+//     res.status(400).json(err);
+//   }
+// });
 
 router.post('/api/logout', async(req, res) => {
   console.log("logout route)")
