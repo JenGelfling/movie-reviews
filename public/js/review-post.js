@@ -11,7 +11,7 @@ const reviewFormHandler = async (event) => {
     const title = document.querySelector('#review-title').value.trim();
     const content = document.querySelector('#review-comments').value.trim();
     const score = document.querySelector('#review-score').value.trim();
-    // const author_id= 6
+    const author_id= 1
 
     if (title && content && score) {
         try {
@@ -31,7 +31,7 @@ const reviewFormHandler = async (event) => {
             }
         } catch (error){
             console.error('Error:', error);
-            alert('An error occurred while posting the review.');
+            alert(`An error occurred while posting the review.`);
         }
     } else {
             alert('Please log in and fill in all fields');
