@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,21 +26,23 @@
                    <li>
                         <a href="/" class="nav-link px-4 text-white">Home</a>
                     </li>
-                    <li>
+                    {{!-- <li>
                         <a href="/" method="get" class="nav-link px-4 text-white">About</a>
-                    </li>
+                    </li> --}}
                       <li>
                         <a href="/post-page" class="nav-link px-4 text-white">Post A Review</a>
                     </li>
                     <li>
-                        <a href="/search-results" class="nav-link px-4 text-white">Seach A Movie</a>
+                        <a href="/search-results" class="nav-link px-4 text-white">Search A Movie</a>
+                    </li>
+                    <li>
+                    {{#if logged_in}}
+                            <button id="logout" class="nav-link px-4 text-white">Logout</button>
+                        {{else}}
+                            <a class="nav-link px-4 text-white" href="/login">Login</a>
+                    {{/if}}
                     </li>
                 </ul>
-                {{#if session.logged_in}}
-                    <button id="logout" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 text-white">Logout</button>
-                    {{else}}
-                        <a class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 text-white" href="/login">Login</a>
-                {{/if}}
           {{!-- <a href="/" class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 text-white">My Profile</a> --}}
             </div>
         </div>

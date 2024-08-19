@@ -1,4 +1,3 @@
-
 const getSessionData = () => {
     // This should be replaced with actual logic to retrieve session data
     // For example, it could be an API call or accessing a global variable
@@ -12,14 +11,13 @@ const reviewFormHandler = async (event) => {
     const title = document.querySelector('#review-title').value.trim();
     const comments = document.querySelector('#review-comments').value.trim();
     const score = document.querySelector('#review-score').value.trim();
-    const sessionData = getSessionData();
 
-    if (sessionData && sessionData.userId && title && comments && score) {
+    if (logged_in && title && comments && score) {
         try {
         console.log('sending review data')
         const response = await fetch('/api/reviews', {
             method: 'POST',
-            body: JSON.stringify({ title, comments, score, author_id: sessionData.userId }),
+            body: JSON.stringify({ title, comments, score, author_id: logged_in.userId }),
             headers: { 'Content-Type': 'application/json' },
         });
     
@@ -38,5 +36,7 @@ const reviewFormHandler = async (event) => {
             alert('Please log in and fill in all fields');
     }
 };
+
+document.querySelector('#review-form').addEventListener('submit', reviewFormHandler);
 
 document.querySelector('#review-form').addEventListener('submit', reviewFormHandler);
