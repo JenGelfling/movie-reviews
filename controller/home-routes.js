@@ -105,7 +105,7 @@
         );
         console.log(reviews)
         res.render('homepage', {reviews, users, logged_in: req.session.logged_in});
-        console.log(req.session.logged_in)
+        // console.log(req.session.logged_in)
       } catch (err) {
         console.log(err);
         res.status(500).json(err);

@@ -104,7 +104,7 @@ router.get('/api/reviews', async (req, res) => {
     });
    } catch (err) {
      res.status(500).json(err);
-   } console.log(logged_in.status)
+   } 
  });
 
  router.get('/api/review/:id', async (req, res) => {
