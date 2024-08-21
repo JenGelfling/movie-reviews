@@ -72,8 +72,9 @@
   
   // Route to post new review data
   router.post("/api/reviews", async (req, res) => {
+    console.log(req.session);
     try {
-      const reviewData = await Reviews.create(req.body)
+      const reviewData = await Reviews.create({...req.body, author_id: req.session.user_id})
       res.json({ status: "success", payload: reviewData })
       console.log(reviewData)
     } catch(err){
