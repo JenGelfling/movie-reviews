@@ -18,7 +18,7 @@ const reviewFormHandler = async (event) => {
         console.log('sending review data')
         const response = await fetch('/api/reviews', {
             method: 'POST',
-            body: JSON.stringify({ title, content, score, author_id: req.session.user_id || 1 }),
+            body: JSON.stringify({ title, content, score }),
             headers: { 'Content-Type': 'application/json' },
         });
     

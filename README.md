@@ -33,10 +33,7 @@ A new visitor to the site can see the top reviews and sign up to the site. Once 
 
 ## Deployed
 
-- [Click here to view the deployed webpage.](https://dashboard.render.com/)
-
-![image](./public/images/homepage.png)
-![image](./public/images/search-page.png)
+- [Click here to view the deployed webpage.](https://movie-reviews-6t5c.onrender.com/)
 
 
 ## Credits

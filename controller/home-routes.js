@@ -74,7 +74,7 @@
   router.post("/api/reviews", async (req, res) => {
     console.log(req.session);
     try {
-      const reviewData = await Reviews.create({...req.body, author_id: req.session.user_id})
+      const reviewData = await Reviews.create({...req.body, author_id: req.session.user_id || 1})
       res.json({ status: "success", payload: reviewData })
       console.log(reviewData)
     } catch(err){
