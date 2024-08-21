@@ -11,14 +11,14 @@ const reviewFormHandler = async (event) => {
     const title = document.querySelector('#review-title').value.trim();
     const content = document.querySelector('#review-comments').value.trim();
     const score = document.querySelector('#review-score').value.trim();
-    // const author_id= 1
+    const author_id = 1
 
     if (title && content && score) {
         try {
         console.log('sending review data')
         const response = await fetch('/api/reviews', {
             method: 'POST',
-            body: JSON.stringify({ title, content, score }),
+            body: JSON.stringify({ title, content, score, author_id }),
             headers: { 'Content-Type': 'application/json' },
         });
     

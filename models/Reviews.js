@@ -21,7 +21,7 @@ Reviews.init(
     },
     author_id: {
         type: DataTypes.INTEGER,
-        allowNull: true,
+        allowNull: false,
         references: {
           model: 'users',
           key: 'id'
